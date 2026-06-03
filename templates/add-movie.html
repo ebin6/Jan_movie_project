@@ -33,6 +33,14 @@
             <input type="file" name="poster">
         </div>
         <div>
+            <label>Choose Category</label>
+            <select name="category">
+                {% for cat in categories %}
+                    <option value="{{cat.id}}">{{cat.name}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div>
             <label>Release date</label>
             <input type="date" name="release_date">
         </div>
