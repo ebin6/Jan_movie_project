@@ -28,16 +28,32 @@ def allMovies(request):
 
 def editMovie(request,movie_id):
     movie=Movie.objects.get(id=movie_id)
+    categories=Category.objects.all()
     if request.method=="POST":
         movie.name=request.POST["title"]
         movie.description=request.POST["description"]
         movie.poster=request.FILES.get("poster",movie.poster)
         movie.release_date=request.POST["release_date"]
         movie.trailer_link=request.POST["trailer_link"]
+        category=request.POST['category']
+        cat=Category.objects.get(id=category)
+        movie.category=cat
         movie.save()
         return redirect("movies:movie_detail",movie.id)
-    return render(request,"edit-movie.html",{"movie":movie})
+    return render(request,"edit-movie.html",{"movie":movie,"categories":categories})
 
 def movieDetail(request,movie_id):
     movie=Movie.objects.get(id=movie_id)
     return render(request,"movie-detail.html",{"movie":movie})
+
+def register(request):
+    if request.method=="POST":
+        email=request.POST['email']
+        f_name=request.POST["f_name"]
+        l_name=request.POST["l_name"]
+        passwd=request.POST["con_password"]
+
+    return render(request,"register.html")
+
+def signin(request):
+    return render(request,"login.html")

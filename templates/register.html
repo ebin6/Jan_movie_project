@@ -1,0 +1,49 @@
+{% extends 'base.html ' %}
+
+{% block title %}Register{% endblock %}
+
+{% block content %}
+    <div>
+        <form method="post" action="{% url 'movies:signup' %}" onsubmit="return checkPasswords()">
+            {% csrf_token %}
+            <div>
+                <label>Fisrt Name</label>
+                <input type="text" name="f_name" id="f_name">
+            </div>
+            <div>
+                <label>Last Name</label>
+                <input type="text" name="l_name" id="l_name">
+            </div>
+            <div>
+                <label>E-mail</label>
+                <input type="email" name="email">
+            </div>
+            <div>
+                <label>Create Password</label>
+                <input type="password" name="create_password" id="create_password">
+            </div>
+            <div>
+                <label>Confirm Password</label>
+                <input type="password" name="con_password" id="con_password">
+            </div>
+            <div>
+                <input type="submit" value="Register">
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function checkPasswords(){
+            let create_password=document.getElementById("create_password").value;
+            let con_password=document.getElementById("con_password").value;
+            if(create_password==con_password){
+                return true
+            }
+            else{
+                alert("Both passwords must be same")
+                return false
+            }
+
+        }
+    </script>
+{% endblock %}

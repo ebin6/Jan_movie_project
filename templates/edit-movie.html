@@ -1,17 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <nav>
-        <a href="{% url 'movies:home' %}">Home</a>
-        <a href="{% url 'movies:add_movie' %}">Add Movie</a>
-        <a href="{% url 'movies:all_movies' %}">All Movies</a>
-    </nav>
+{% extends 'base.html ' %}
 
+{% block title %}Edit - {{movie.name}}{% endblock %}
+
+{% block content %}
     <div>
         <h1>Edit Movie</h1>
     </div>
@@ -40,6 +31,14 @@
                     <input type="file" name="poster">
                 </div>
                 <div>
+                    <label>Category</label>
+                    <select name="category">
+                        {% for cat in categories %}
+                            <option value="{{cat.id}}">{{cat.name}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div>
                     <label>Release date</label>
                     <input type="date" name="release_date" value="{{movie.release_date|date:'Y-m-d'}}">
                 </div>
@@ -52,5 +51,4 @@
     </div>
     
     
-</body>
-</html>
+{% endblock %}
