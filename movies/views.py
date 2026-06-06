@@ -46,14 +46,3 @@ def movieDetail(request,movie_id):
     movie=Movie.objects.get(id=movie_id)
     return render(request,"movie-detail.html",{"movie":movie})
 
-def register(request):
-    if request.method=="POST":
-        email=request.POST['email']
-        f_name=request.POST["f_name"]
-        l_name=request.POST["l_name"]
-        passwd=request.POST["con_password"]
-
-    return render(request,"register.html")
-
-def signin(request):
-    return render(request,"login.html")

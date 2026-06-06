@@ -21,7 +21,9 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("",include("movies.urls"))
+    path("account/",include("credentials.urls")),
+    path("",include("movies.urls")),
+
 ]
 
 urlpatterns+=static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)
