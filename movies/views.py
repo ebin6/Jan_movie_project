@@ -7,7 +7,6 @@ def index(request):
     return render(request,"index.html")
 
 def addMovie(request):
-    categories=Category.objects.all()
     if request.method=="POST":
         movie_name=request.POST["title"]
         desc=request.POST["description"]
@@ -19,16 +18,18 @@ def addMovie(request):
         movie=Movie(name=movie_name,poster=image,description=desc,trailer_link=tr_link,release_date=date,category=category)
         movie.save()
         return redirect("movies:all_movies")
-    return render(request,"add-movie.html",{"categories":categories})
+    return render(request,"add-movie.html")
 
-def allMovies(request):
-    movies=Movie.objects.all()
+def allMovies(request,cat_slug=None):
+    if cat_slug:
+        movies=Movie.objects.filter(category__slug=cat_slug)
+    else:
+        movies=Movie.objects.all()
     return render(request,"all-movies.html",{"movies":movies})
 
 
 def editMovie(request,movie_id):
     movie=Movie.objects.get(id=movie_id)
-    categories=Category.objects.all()
     if request.method=="POST":
         movie.name=request.POST["title"]
         movie.description=request.POST["description"]
@@ -40,7 +41,7 @@ def editMovie(request,movie_id):
         movie.category=cat
         movie.save()
         return redirect("movies:movie_detail",movie.id)
-    return render(request,"edit-movie.html",{"movie":movie,"categories":categories})
+    return render(request,"edit-movie.html",{"movie":movie,})
 
 def movieDetail(request,movie_id):
     movie=Movie.objects.get(id=movie_id)

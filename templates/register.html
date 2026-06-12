@@ -4,8 +4,16 @@
 
 {% block content %}
     <div>
+        <div>
+            {% for msg in messages %}
+              <div class="alert alert-warning" role="alert">
+                {{msg}}
+              </div>
+            {% endfor %}
+        </div>
         <form method="post" action="{% url 'credentials:signup' %}" onsubmit="return checkPasswords()">
             {% csrf_token %}
+            
             <div>
                 <label>Fisrt Name</label>
                 <input type="text" name="f_name" id="f_name">

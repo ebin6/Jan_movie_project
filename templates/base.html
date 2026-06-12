@@ -1,21 +1,34 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    {% block extra_head %}{% endblock %}
 </head>
 <body>
     <nav>
-        <a href="{% url 'movies:home' %}">Home</a>
-        <a href="{% url 'movies:add_movie' %}">Add Movie</a>
-        <a href="{% url 'movies:all_movies' %}">All Movies</a>
-        {% if user.is_authenticated %}
-        <a href="{% url 'credentials:signout' %}">Logout</a>
-        {% else %}
-        <a href="{% url 'credentials:signin' %}">Login</a>
-        <a href="{% url 'credentials:signup' %}">Register</a>
-        {% endif %}
+        <ul class="nav-links">
+            <li><a href="{% url 'movies:home' %}">Home</a></li>
+            <li><a href="{% url 'movies:add_movie' %}">Add Movie</a></li>
+            <li><a href="{% url 'movies:all_movies' %}">All Movies</a></li>
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'credentials:signout' %}">Logout</a></li>
+            {% else %}
+                <li><a href="{% url 'credentials:signin' %}">Login</a></li>
+                <li><a href="{% url 'credentials:signup' %}">Register</a></li>
+            {% endif %}
+        </ul>
+        
+        
+
+
+        
+        
+        
+
     </nav>
     {% block content %}
 
@@ -25,6 +38,6 @@
             <p>NetFlix - Copyright 2017</p>
         </div>
     </footer>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
 </html>
