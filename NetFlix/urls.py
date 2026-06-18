@@ -22,6 +22,7 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("account/",include("credentials.urls")),
+    path("actors/",include("actors.urls")),
     path("",include("movies.urls")),
 
 ]

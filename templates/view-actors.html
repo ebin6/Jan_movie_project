@@ -1,0 +1,20 @@
+{% extends 'base.html ' %}
+
+{% block title %}All Actors{% endblock %}
+
+{% block content %}
+    <h1 style="text-align: center;">All Actors</h1>
+    <div style="display: flex;flex-wrap: wrap;">
+        {% for actor in actors %}
+            <div style="margin:20px 50px;">
+                <img src="{{actor.profile_pic.url}}" style="width: 120px;height:170px">
+                <div>
+                    <h4>{{actor.name}}</h4>
+                    <a href="{% url 'actors:actor_detail' actor.id %}">View Detail</a>
+                </div>        
+            </div>
+
+        {% endfor %}
+    </div>
+
+{% endblock %}

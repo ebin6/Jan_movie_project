@@ -15,6 +15,7 @@
             <li><a href="{% url 'movies:add_movie' %}">Add Movie</a></li>
             <li><a href="{% url 'movies:all_movies' %}">All Movies</a></li>
             {% if user.is_authenticated %}
+                <li><a href="{% url 'actors:add_actor' %}">Add Actor</a></li>
                 <li><a href="{% url 'credentials:signout' %}">Logout</a></li>
             {% else %}
                 <li><a href="{% url 'credentials:signin' %}">Login</a></li>

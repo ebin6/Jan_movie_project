@@ -1,0 +1,21 @@
+{% extends 'base.html ' %}
+
+{% block title %}View Actor{% endblock %}
+
+{% block content %}
+    <div style="display: flex;">
+        <div>
+            <img src="{{actor.profile_pic.url}}" style="width: 230px;height: 280px;">
+        </div>
+        <div>
+            <h2>{{actor.name}}</h2>
+            <p>{{actor.place}}</p>
+            <p>{{actor.description}}</p>
+            <div>
+                <a href="{% url 'actors:edit_actor' actor.id %}">Edit</a>
+                <a href="">Delete</a>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
