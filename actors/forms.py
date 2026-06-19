@@ -5,3 +5,5 @@ class ActorForm(forms.ModelForm):
     class Meta:
         model=Actors
         fields="__all__"
+
+

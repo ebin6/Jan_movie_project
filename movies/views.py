@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
-from movies.models import Movie,Category
-
+from movies.models import Movie,Category,ActorMovie,Reviews
+from actors.models import Actors
+from django.contrib.auth.models import User
 # Create your views here.
 
 def index(request):
@@ -46,4 +47,22 @@ def editMovie(request,movie_id):
 def movieDetail(request,movie_id):
     movie=Movie.objects.get(id=movie_id)
     return render(request,"movie-detail.html",{"movie":movie})
+
+def AddMovieActor(request,movie_id):
+    if request.method=="POST":
+        movie=Movie.objects.get(id=movie_id)
+        actor_id=request.POST["actor"]
+        role_name=request.POST['character_name']
+        actor=Actors.objects.get(id=actor_id)
+        ActorMovie(movie=movie,actor=actor,character_name=role_name).save()
+        return redirect("movies:movie_detail",movie_id)
+
+def addReview(request,movie_id):
+    if request.method=="POST":
+        movie=Movie.objects.get(id=movie_id)
+        review=request.POST["comment"]
+        rating=request.POST['rating']
+        user=User.objects.get(id=request.user.id)
+        Reviews(movie=movie,review=review,rating=rating,user=user).save()
+        return redirect("movies:movie_detail",movie_id)
 

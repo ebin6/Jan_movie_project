@@ -65,7 +65,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                "movies.context_processors.allCategories"
+                "movies.context_processors.allCategories",
+                "actors.context_processors.allActors"
             ],
         },
     },

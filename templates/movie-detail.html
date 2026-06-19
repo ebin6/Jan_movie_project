@@ -13,4 +13,25 @@
     <p>{{movie.description}}</p>
     <p><a href="{{movie.trailer_link}}">Trailer link</a></p>
     <p>{{movie.category.name}}</p>
+
+    <!-- Add Cast -->
+    <div class="add-cast">
+        <form method="post" action="{% url 'movies:add_cast' movie.id %}">
+            {% csrf_token %}
+            <div>
+                <label>Enter actor name</label>
+                <select name="actor">
+                    {% for actor in all_actors %}
+                        <option value="{{actor.id}}">{{actor.name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div>
+                <label>Enter actor name</label>
+                <input type="text" name="character_name">
+            </div>
+            <input type="submit" value="Add cast">
+
+        </form>
+    </div>
 {% endblock %}
